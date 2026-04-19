@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+dist/
+build/
+*.zip
+main.js
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Development
+.esbuild-cache/
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+
+# Obsidian
+.obsidian/
+vault/
+test-vault/
+
+# Temporary
+.tmp/
+temp/

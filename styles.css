@@ -1,0 +1,7 @@
+.hill-chart-note-link {
+  cursor: pointer;
+}
+
+.hill-chart-note-link:hover {
+  text-decoration: underline;
+}
