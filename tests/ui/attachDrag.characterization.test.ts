@@ -108,8 +108,8 @@ describe('attachDrag characterization', () => {
     pt.x = 50; pt.y = 50;
     window.dispatchEvent(new MouseEvent('mousemove', { clientX: 13, clientY: 10 }));
 
-    // cursor should not have changed to grabbing (unarmed)
-    expect(circle.style.cursor).not.toBe('grabbing');
+    // grabbing class must not be applied (unarmed)
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
 
     // circle should not have moved
     const cx = parseFloat(circle.getAttribute('cx') ?? '0');
@@ -138,7 +138,7 @@ describe('attachDrag characterization', () => {
     // move 5 px — at/above threshold
     window.dispatchEvent(new MouseEvent('mousemove', { clientX: 15, clientY: 10 }));
 
-    expect(circle.style.cursor).toBe('grabbing');
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(true);
   });
 
   // ── 2. mouse-move updates position + label ───────────────────────────────
@@ -469,7 +469,7 @@ describe('attachDrag characterization', () => {
     expect(changes.length).toBe(1);
     expect(changes[0].specIndex).toBe(0);
     expect(circle.getAttribute('fill-opacity')).toBeNull();
-    expect(circle.style.cursor).toBe('grab');
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
 
     // A subsequent mousemove must NOT keep updating the circle (listener removed).
     const cxAfterDrop = parseFloat(circle.getAttribute('cx') ?? '0');

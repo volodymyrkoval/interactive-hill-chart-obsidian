@@ -52,7 +52,7 @@ function reportUnquotedWikiLink(errors: HillChartParseError[], index: number): v
 
 function parseDotLabel(item: HillChartItem, obj: Record<string, unknown>): void {
   if ('label' in obj && typeof obj['label'] === 'string' && obj['label'] !== '') {
-    applyLabelAndLink(item, obj['label'] as string);
+    applyLabelAndLink(item, obj['label']);
   }
 }
 

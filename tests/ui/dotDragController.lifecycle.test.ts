@@ -199,8 +199,8 @@ describe('DotDragController lifecycle', () => {
     window.dispatchEvent(new MouseEvent('mouseup'));
 
     expect(changes.length).toBe(0);
-    // Cursor must NOT have become 'grabbing' (never armed).
-    expect(circle.style.cursor).not.toBe('grabbing');
+    // Must NOT have become grabbing (never armed).
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
   });
 
   // ── 2. arm → threshold-met → move → commit ──────────────────────────────
@@ -437,8 +437,8 @@ describe('DotDragController lifecycle', () => {
 
     window.dispatchEvent(new MouseEvent('mouseup'));
 
-    // commitDrag resets cursor to 'grab'
-    expect(circle.style.cursor).toBe('grab');
+    // commitDrag removes grabbing class
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
   });
 
   // ── 6. Edge: mousemove before arm ────────────────────────────────────────
@@ -494,8 +494,8 @@ describe('DotDragController lifecycle', () => {
     expect(changes[0].specIndex).toBe(0);
     // Opacity restored (no resolvedOpacity → attribute removed).
     expect(circle.getAttribute('fill-opacity')).toBeNull();
-    // Cursor reset.
-    expect(circle.style.cursor).toBe('grab');
+    // Grabbing class removed on reset.
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
   });
 
   it('after mouseup outside SVG, subsequent mousemove does not update circle cx', () => {

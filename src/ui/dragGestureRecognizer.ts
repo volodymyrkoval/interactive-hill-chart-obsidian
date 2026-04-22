@@ -82,8 +82,8 @@ export class DragGestureRecognizer {
     this.armed = armedImmediately;
     this.startClientX = ev.clientX;
     this.startClientY = ev.clientY;
-    window.addEventListener('mousemove', this.boundOnMouseMove);
-    window.addEventListener('mouseup', this.boundOnMouseUp);
+    activeWindow.addEventListener('mousemove', this.boundOnMouseMove);
+    activeWindow.addEventListener('mouseup', this.boundOnMouseUp);
   }
 
   private onMouseMove(ev: MouseEvent): void {
@@ -129,7 +129,7 @@ export class DragGestureRecognizer {
   private teardown(): void {
     this.active = false;
     this.armed = false;
-    window.removeEventListener('mousemove', this.boundOnMouseMove);
-    window.removeEventListener('mouseup', this.boundOnMouseUp);
+    activeWindow.removeEventListener('mousemove', this.boundOnMouseMove);
+    activeWindow.removeEventListener('mouseup', this.boundOnMouseUp);
   }
 }

@@ -11,7 +11,7 @@ export default class HillChartPlugin extends Plugin {
     );
   }
 
-  async onunload(): Promise<void> {
+  onunload(): void {
     // Cleanup handled by Obsidian
   }
 }

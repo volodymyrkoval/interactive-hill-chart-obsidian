@@ -34,7 +34,7 @@ export function createHillChartBlockProcessor(
     renderer.render(el, curve, {
       config,
       onNoteClick: (noteName, newLeaf) => {
-        app.workspace.openLinkText(noteName, '', newLeaf);
+        void app.workspace.openLinkText(noteName, '', newLeaf);
       },
       onPositionChange: (specIndex: number, newPosition: HillPosition) => {
         const sectionInfo = ctx.getSectionInfo(el);

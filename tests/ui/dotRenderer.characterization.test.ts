@@ -198,14 +198,14 @@ describe('DotRenderer.render SVG output', () => {
 
   // ── 4. Editable mode (onPositionChange provided) ─────────────────────────
 
-  it('editable mode: circle cursor is set to grab', () => {
+  it('editable mode: circle has hill-chart-dot class (grab cursor via CSS)', () => {
     const item: HillChartItem = { position: pos(50) };
     const options = makeOptions(svg, {
       onPositionChange: vi.fn(),
     });
     const circle = renderer.render(item, 0, options);
-    // createDotCircle always sets cursor to 'grab'; drag controller may change it.
-    expect(circle.style.cursor).toBe('grab');
+    // createDotCircle applies hill-chart-dot class; CSS sets cursor: grab.
+    expect(circle.classList.contains('hill-chart-dot')).toBe(true);
   });
 
   it('editable mode: registerCleanup is called (DotDragController registered a teardown)', () => {

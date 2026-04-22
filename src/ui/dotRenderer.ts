@@ -135,7 +135,7 @@ export class DotRenderer {
   }
 
   private createDotCircle(x: number, y: number, effective: ReturnType<typeof resolveDotStyle>): SVGCircleElement {
-    const circle = document.createElementNS(SVG_NS, 'circle') as SVGCircleElement;
+    const circle = activeDocument.createElementNS(SVG_NS, 'circle');
     circle.setAttribute('cx', `${x}`);
     circle.setAttribute('cy', `${y}`);
     circle.setAttribute('r', `${effective.radius ?? DEFAULT_DOT_RADIUS}`);
@@ -145,7 +145,6 @@ export class DotRenderer {
     }
     circle.setAttribute('stroke', 'var(--background-primary)');
     circle.setAttribute('stroke-width', '2');
-    circle.style.cursor = 'grab';
     circle.classList.add('hill-chart-dot');
     return circle;
   }
@@ -168,7 +167,7 @@ export class DotRenderer {
 
   private createDotLabel(item: HillChartItem, dotPos: { t: number; x: number; y: number }, labelCtx: LabelContext): SVGTextElement {
     const { effective, labelLayout } = labelCtx;
-    const textEl = document.createElementNS(SVG_NS, 'text') as SVGTextElement;
+    const textEl = activeDocument.createElementNS(SVG_NS, 'text');
     textEl.setAttribute('dominant-baseline', 'middle');
     textEl.setAttribute('font-size', `${effective.fontSize ?? DEFAULT_DOT_LABEL_FONT_SIZE}`);
     textEl.setAttribute('fill', effective.fontColor ?? 'currentColor');

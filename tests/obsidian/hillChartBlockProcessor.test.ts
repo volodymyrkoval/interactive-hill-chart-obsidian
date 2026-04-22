@@ -104,7 +104,7 @@ describe('createHillChartBlockProcessor', () => {
     expect(container.querySelector('svg')).toBeNull();
   });
 
-  it('onPositionChange callback is wired to renderer (circle gets cursor:grab)', () => {
+  it('onPositionChange callback is wired to renderer (circle has hill-chart-dot class)', () => {
     const app = makeApp();
     const { ctx } = makeCtx();
     const { writer } = makeWriter();
@@ -114,7 +114,7 @@ describe('createHillChartBlockProcessor', () => {
 
     const circle = container.querySelector('circle');
     expect(circle).not.toBeNull();
-    expect((circle as SVGElement).style.cursor).toBe('grab');
+    expect((circle as SVGElement).classList.contains('hill-chart-dot')).toBe(true);
   });
 
   it('calls injected logger.warn when PositionWriter.write fails', async () => {

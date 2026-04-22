@@ -26,7 +26,7 @@ export class ChartChromeRenderer {
   renderBaseline(style: ResolvedBaselineStyle): void {
     if (!style.visible) return;
     const { svg, size, baselineY } = this.ctx;
-    const baseline = document.createElementNS(SVG_NS, 'line');
+    const baseline = activeDocument.createElementNS(SVG_NS, 'line');
     baseline.setAttribute('x1', '0');
     baseline.setAttribute('y1', `${baselineY}`);
     baseline.setAttribute('x2', `${size.width}`);
@@ -42,7 +42,7 @@ export class ChartChromeRenderer {
     const { svg, size, baselineY } = this.ctx;
     const centerX = size.width / 2;
     const peakY = curve.toSvgPoint(0.5, size).y;
-    const dividerEl = document.createElementNS(SVG_NS, 'line');
+    const dividerEl = activeDocument.createElementNS(SVG_NS, 'line');
     dividerEl.setAttribute('x1', `${centerX}`);
     dividerEl.setAttribute('x2', `${centerX}`);
     dividerEl.setAttribute('y1', `${peakY}`);
@@ -59,7 +59,7 @@ export class ChartChromeRenderer {
 
   renderCurvePath(curve: Curve, style: ResolvedCurveStyle): void {
     const { svg, size } = this.ctx;
-    const path = document.createElementNS(SVG_NS, 'path');
+    const path = activeDocument.createElementNS(SVG_NS, 'path');
     path.setAttribute('d', curve.toSvgPath(size));
     path.setAttribute('fill', style.fill);
     path.setAttribute('stroke', style.stroke);
@@ -79,7 +79,7 @@ export class ChartChromeRenderer {
   }
 
   private renderSectionLabel(svg: SVGSVGElement, spec: { label: string; x: number; y: number; style: ResolvedSectionLabelStyle }): void {
-    const text = document.createElementNS(SVG_NS, 'text') as SVGTextElement;
+    const text = activeDocument.createElementNS(SVG_NS, 'text');
     text.setAttribute('x', `${spec.x}`);
     text.setAttribute('y', `${spec.y}`);
     text.setAttribute('text-anchor', 'middle');

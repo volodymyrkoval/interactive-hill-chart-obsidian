@@ -1,3 +1,11 @@
+.hill-chart-dot {
+  cursor: grab;
+}
+
+.hill-chart-dot--grabbing {
+  cursor: grabbing;
+}
+
 .hill-chart-note-link {
   cursor: pointer;
 }

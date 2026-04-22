@@ -147,7 +147,7 @@ export class DotDragController {
   // ── recognizer callbacks ──────────────────────────────────────────────────
 
   private handleArm(): void {
-    this.a.dom.circle.style.cursor = 'grabbing';
+    this.a.dom.circle.classList.add('hill-chart-dot--grabbing');
     this.a.dom.circle.setAttribute('fill-opacity', `${HOVER_OPACITY}`);
   }
 
@@ -168,7 +168,7 @@ export class DotDragController {
 
   private commitDrag(): void {
     this.clickGuard.arm();
-    this.a.dom.circle.style.cursor = 'grab';
+    this.a.dom.circle.classList.remove('hill-chart-dot--grabbing');
     this.restoreOpacity();
     const newPercent = Math.round(this.currentT * 100);
     if (newPercent !== this.originalPercent) {

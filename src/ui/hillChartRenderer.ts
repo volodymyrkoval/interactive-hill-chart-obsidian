@@ -93,7 +93,7 @@ export class HillChartRenderer {
 
   private buildSvgRoot(size: Size, labelFontSize: number): SVGSVGElement {
     const viewBoxHeight = size.height + SECTION_LABEL_OFFSET + labelFontSize;
-    const svg = document.createElementNS(SVG_NS, 'svg') as SVGSVGElement;
+    const svg = activeDocument.createElementNS(SVG_NS, 'svg');
     svg.setAttribute('viewBox', `0 0 ${size.width} ${viewBoxHeight}`);
     svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
     svg.setAttribute('width', '100%');
@@ -120,10 +120,10 @@ export class HillChartRenderer {
   }
 
   private renderErrorStrip(container: HTMLElement, errors: HillChartParseError[]): void {
-    const errorDiv = document.createElement('div');
+    const errorDiv = activeDocument.createElement('div');
     errorDiv.className = 'hill-chart-error';
     for (const err of errors) {
-      const p = document.createElement('p');
+      const p = activeDocument.createElement('p');
       p.textContent = `[${err.severity}] ${err.message}`;
       errorDiv.appendChild(p);
     }

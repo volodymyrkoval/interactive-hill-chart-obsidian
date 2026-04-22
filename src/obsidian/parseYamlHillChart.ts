@@ -54,7 +54,7 @@ function loadYaml(source: string, errors: HillChartParseError[]): unknown {
 
 function warnUnknownTopLevel(parsed: unknown, errors: HillChartParseError[]): void {
   if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return;
-  for (const key of Object.keys(parsed as Record<string, unknown>)) {
+  for (const key of Object.keys(parsed)) {
     if (!KNOWN_TOP_LEVEL_KEYS.has(key)) {
       errors.push({
         message: `Unknown top-level key: "${key}". Known keys are: chart, dots.`,

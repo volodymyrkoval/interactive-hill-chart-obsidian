@@ -486,25 +486,24 @@ describe('HillChartRenderer - drag behaviour', () => {
     vi.restoreAllMocks();
   });
 
-  it('circle gets cursor:grab and class hill-chart-dot after render', () => {
+  it('circle gets class hill-chart-dot after render (grab cursor via CSS)', () => {
     const curve = new HillCurve();
     const renderer = new HillChartRenderer();
     renderer.render(container, curve, { config: cfg([{ position: pos(50), label: 'Task' }]) });
 
     const circle = container.querySelector('circle');
     expect(circle).not.toBeNull();
-    expect((circle as SVGElement).style.cursor).toBe('grab');
     expect(circle?.classList.contains('hill-chart-dot')).toBe(true);
   });
 
-  it('text label does NOT get cursor:grab', () => {
+  it('text label does NOT have hill-chart-dot class', () => {
     const curve = new HillCurve();
     const renderer = new HillChartRenderer();
     renderer.render(container, curve, { config: cfg([{ position: pos(50), label: 'Task' }]) });
 
     const text = container.querySelector('text');
     expect(text).not.toBeNull();
-    expect((text as SVGElement).style.cursor).not.toBe('grab');
+    expect((text as SVGElement).classList.contains('hill-chart-dot')).toBe(false);
   });
 
   it('synthetic drag moves circle cx/cy when getScreenCTM is mocked', () => {
@@ -2262,23 +2261,23 @@ describe('HillChartRenderer - label drag (P03)', () => {
     svg.createSVGPoint = vi.fn().mockReturnValue(svgPoint);
     svg.getScreenCTM = vi.fn().mockReturnValue({ inverse: vi.fn().mockReturnValue({}) });
 
-    // Initial state: cursor grab
-    expect(circle.style.cursor).toBe('grab');
+    // Initial state: no grabbing class
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
 
     // Mousedown on label (no movement yet)
     textEl.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: 100, clientY: 100 }));
-    // Cursor should remain grab (not armed yet)
-    expect(circle.style.cursor).toBe('grab');
+    // Not armed yet — grabbing class absent
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
 
     // Move past threshold
     svgPoint.x = 200; svgPoint.y = 100;
     window.dispatchEvent(new MouseEvent('mousemove', { clientX: 200, clientY: 100 }));
-    // Now armed → cursor grabbing
-    expect(circle.style.cursor).toBe('grabbing');
+    // Now armed → grabbing class applied
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(true);
 
-    // Mouseup → cursor back to grab
+    // Mouseup → grabbing class removed
     window.dispatchEvent(new MouseEvent('mouseup'));
-    expect(circle.style.cursor).toBe('grab');
+    expect(circle.classList.contains('hill-chart-dot--grabbing')).toBe(false);
   });
 
   // ---------------------------------------------------------------------------
