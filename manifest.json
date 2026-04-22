@@ -3,7 +3,7 @@
   "name": "Interactive Hill Chart",
   "version": "1.0.0",
   "minAppVersion": "1.4.0",
-  "description": "Draggable Hill Chart in your notes — track Shape Up progress with dots linked to pages, stored as plain YAML.",
+  "description": "Draggable Hill Chart in your notes - track Shape Up progress with dots linked to pages, stored as plain YAML.",
   "author": "Volodymyr Koval",
   "authorUrl": "https://github.com/volodymyrkoval",
   "isDesktopOnly": false
