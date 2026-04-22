@@ -3,7 +3,7 @@ import { createHillChartBlockProcessor } from './obsidian/hillChartBlockProcesso
 import { ObsidianPositionWriter } from './obsidian/obsidianPositionWriter';
 
 export default class HillChartPlugin extends Plugin {
-  async onload(): Promise<void> {
+  onload(): void {
     const positionWriter = new ObsidianPositionWriter(this.app);
     this.registerMarkdownCodeBlockProcessor(
       'hill-chart',
