@@ -120,10 +120,9 @@ export class HillChartRenderer {
   }
 
   private renderErrorStrip(container: HTMLElement, errors: HillChartParseError[]): void {
-    const errorDiv = activeDocument.createElement('div');
-    errorDiv.className = 'hill-chart-error';
+    const errorDiv = createDiv({ cls: 'hill-chart-error' });
     for (const err of errors) {
-      const p = activeDocument.createElement('p');
+      const p = createEl('p');
       p.textContent = `[${err.severity}] ${err.message}`;
       errorDiv.appendChild(p);
     }

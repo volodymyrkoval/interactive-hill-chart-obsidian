@@ -44,6 +44,11 @@ export class MarkdownRenderChild extends Component {
 
 export class Plugin extends Component {}
 
+export function parseYaml(yaml: string): unknown {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  return require('js-yaml').load(yaml) as unknown;
+}
+
 export class TFile {
   path: string;
   constructor(path: string) {

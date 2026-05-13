@@ -1,4 +1,4 @@
-import * as yaml from 'js-yaml';
+import { parseYaml } from 'obsidian';
 import type { HillChartConfig, ChartStyle } from '../model/hillChartConfig';
 import type { HillChartParseError } from '../model/parseErrors';
 import { emitUnknownKeyWarnings } from './styleFieldHelpers';
@@ -42,7 +42,7 @@ function normalizeIndentation(source: string): string {
 
 function loadYaml(source: string, errors: HillChartParseError[]): unknown {
   try {
-    return yaml.load(normalizeIndentation(source));
+    return parseYaml(normalizeIndentation(source)) as unknown;
   } catch (err) {
     errors.push({
       message: err instanceof Error ? err.message : String(err),
